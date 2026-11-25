@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#080d17">
+    <title>PhishGuard · Security Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar"><a class="logo" href="/"><span class="logo-mark">◈</span><span>PHISH<span
+                        class="accent">GUARD</span><small>THREAT INTELLIGENCE</small></span></a>
+            <div class="nav-label">WORKSPACE</div>
+            <a class="nav-link {% if request.path=='/' %}active{% endif %}" href="/"><span>▦</span> Overview</a>
+            <a class="nav-link {% if request.path=='/history' %}active{% endif %}" href="/history"><span>◷</span> Scan History</a>
+            <div class="nav-label education-nav-label">SECURITY EDUCATION</div>
+            <a class="nav-link education-nav-link {% if request.path=='/awareness' %}active{% endif %}" href="/awareness"><span>◉</span> Awareness Center</a>
+            <a class="nav-link education-nav-link {% if request.path.startswith('/phishing-awareness') %}active{% endif %}" href="/phishing-awareness"><span>✉</span> Phishing Awareness</a>
+            <a class="nav-link education-nav-link {% if request.path.startswith('/social-awareness') %}active{% endif %}" href="/social-awareness"><span>◎</span> Social Engineering Awareness</a>
+            <div class="sidebar-bottom">
+                <div class="status-dot"></div><span>Analysis engine <b>Operational</b></span><small>Rule-based · No
+                    ML</small>
+            </div>
+        </aside>
+        <main class="main-area">
+            <header class="topbar">
+                <div><span class="eyebrow">SECURITY OPERATIONS CENTER</span>
+                    <h2>{% block page_title %}Overview{% endblock %}</h2>
+                </div>
+                <div class="top-actions"><span class="live-pill"><i></i> SYSTEM ONLINE</span>
+                    <div class="avatar">PG</div>
+                </div>
+            </header>
+            <div class="page-content">{% block content %}{% endblock %}</div>
+            <footer>PHISHGUARD <span>· Educational security prototype · Analyze responsibly</span></footer>
+        </main>
+    </div>
+    <script src="{{ url_for('static',filename='app.js') }}"></script>
+</body>
+
+</html>

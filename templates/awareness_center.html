@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block page_title %}Security Education{% endblock %}{% block content %}
+<section class="education-dashboard-hero"><div><span class="eyebrow">SECURITY EDUCATION</span><h1>Your learning.<br><span class="gradient-text">Your security level.</span></h1><p>A quick snapshot of the habits, knowledge, and milestones you have built across PhishGuard.</p></div><div class="education-hero-mark" aria-hidden="true"><span>✦</span><small>HUMAN<br>FIREWALL</small></div></section>
+<section class="education-stats-grid" aria-label="Learning overview">
+<article class="education-stat"><span class="education-stat-icon">◌</span><div><small>COURSE PROGRESS</small><strong id="education-progress">0%</strong><span id="education-progress-caption">0 of 11 courses</span></div><div class="education-progress-track"><i id="education-progress-bar"></i></div></article>
+<article class="education-stat"><span class="education-stat-icon xp">✧</span><div><small>EXPERIENCE</small><strong id="education-xp">0 <em>XP</em></strong><span>Earned through completed learning</span></div></article>
+<article class="education-stat"><span class="education-stat-icon batch">▤</span><div><small>BATCHES COLLECTED</small><strong id="education-batches">0 <em>/ 11</em></strong><span>Hover the collection icon to peek</span></div><a class="collection-peek-trigger" href="/awareness/batches" aria-label="Open collected awareness batches">View collection <span>↗</span></a><div class="collection-floating" id="education-batch-popover" role="tooltip"><strong>Your collected batches</strong><div id="education-batch-list"><span class="collection-empty">Complete a lesson to collect your first batch.</span></div></div></article>
+<article class="education-stat"><span class="education-stat-icon course">✓</span><div><small>COURSES COMPLETED</small><strong id="education-completed">0 <em>/ 11</em></strong><span>Phishing + social engineering</span></div><div class="mini-course-icons" id="education-course-icons" aria-label="Completed courses"></div></article>
+</section>
+<section class="education-batch-section" aria-labelledby="batch-strip-title">
+  <div class="education-strip-heading"><div><span class="eyebrow">YOUR COLLECTION</span><h2 id="batch-strip-title">Awareness Batches</h2><p>Every batch is a small skill milestone. Earned batches light up; tap any batch to open its course.</p></div><a href="/awareness/batches" class="education-strip-link">Collection details ↗</a></div>
+  <div class="education-batch-scroll" id="education-batch-scroll" aria-label="All course batches"><span class="collection-empty">Your batch collection is loading…</span></div>
+</section>
+<section class="education-completed-section" aria-labelledby="completed-strip-title">
+  <div class="education-strip-heading"><div><span class="eyebrow">YOUR MILESTONES</span><h2 id="completed-strip-title">Completed Courses</h2><p>Swipe through finished topics to revisit your batch, XP reward, and final quiz result.</p></div></div>
+  <div class="education-completed-scroll" id="education-completed-scroll" aria-label="Completed course cards"><div class="education-completed-empty">Complete a lesson and submit its final quiz to see your course card here.</div></div>
+</section>
+{% endblock %}

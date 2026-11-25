@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block page_title %}Phishing Awareness{% endblock %}
+{% block content %}
+<section class="learn-welcome">
+  <div class="learn-welcome-copy"><span class="eyebrow">SECURITY EDUCATION · PHISHING TRACK</span>
+    <h1>Decode the bait.<br><span class="gradient-text">Stay one step ahead.</span></h1>
+    <p>Learn to recognize deceptive messages, suspicious links, unsafe attachments, and the steps to report or recover
+      safely.</p>
+    <a class="primary-btn" href="#learning-path">Explore phishing lessons <span>→</span></a>
+  </div>
+  <div class="learning-visual" aria-hidden="true">
+    <div class="learning-orbit orbit-a"></div>
+    <div class="learning-orbit orbit-b"></div>
+    <div class="learning-shield">✦<small>HUMAN<br>FIREWALL</small></div><span class="float-chip chip-one">VERIFY
+      FIRST</span><span class="float-chip chip-two">STAY AWARE</span>
+  </div>
+</section>
+
+<div class="content-heading" id="learning-path"><span class="eyebrow">YOUR LEARNING PATH</span>
+  <h2>Cybersecurity, made practical</h2>
+  <p>Six practical lessons. Every lesson unlocks its own awareness batch collection.</p>
+</div>
+<section class="course-grid">
+  {% set lessons = [
+  ('01','Email & phishing','Recognize suspicious senders, deceptive links, and messages designed to rush
+  you.','✉','pink','Check the sender, destination, and unexpected requests.','Batch 01 · Phishing message anatomy|Batch
+  02 · Attachments & malicious links'),
+  ('02','Safe browsing','Understand domains, HTTPS, downloads, and browser warning signs.','◎','blue','HTTPS encrypts
+  traffic; it does not prove a site is trustworthy.','Batch 03 · URL inspection|Batch 04 · Unicode & deceptive
+  domains'),
+  ('03','Passwords & identity','Protect accounts with unique passwords, a manager, and multi-factor
+  authentication.','⌑','purple','Never disclose an OTP or approve an unexpected MFA prompt.','Batch 05 · Password
+  hygiene|Batch 06 · MFA & account recovery'),
+  ('04','Device security','Keep software updated and reduce exposure from unsafe files and apps.','▣','orange','Install
+  updates from trusted settings or official sources.','Batch 07 · Updates & patching|Batch 08 · Safe downloads & apps'),
+  ('05','Data & privacy','Think carefully before sharing personal, academic, or workplace
+  information.','◇','green','Share only what is necessary, with verified recipients.','Batch 09 · Personal data
+  protection|Batch 10 · Safe sharing'),
+  ('06','Report & recover','Respond calmly when something looks wrong or an account may be
+  compromised.','⚑','gold','Report promptly, preserve evidence, and use official recovery steps.','Batch 11 · Report
+  suspicious activity|Batch 12 · Incident response')]
+  %}
+  {% for n,title,desc,icon,color,tip,batch_titles in lessons %}
+  <article class="course-card" data-lesson="{{ loop.index }}">
+    <div class="course-card-top"><span class="course-icon {{ color }}">{{ icon }}</span><span class="lesson-status"
+        id="lesson-status-{{ loop.index }}">NOT STARTED</span></div><span class="learn-number">LESSON {{ n }}</span>
+    <h3>{{ title }}</h3>
+    <div class="lesson-batch-chips" data-batches="{{ batch_titles }}">{% for batch_title in batch_titles.split('|')
+      %}<span>{{ batch_title }}</span>{% endfor %}</div>
+    <p>{{ desc }}</p>
+    <div class="course-takeaway"><b>KEY TAKEAWAY</b><span>{{ tip }}</span></div><a class="lesson-open"
+      href="/awareness/lesson/{{ loop.index }}">Open detailed lesson <span>→</span></a>
+  </article>
+  {% endfor %}
+</section>
+<section class="awareness-bottom-callout">
+  <div><span class="eyebrow">READY FOR REAL-WORLD PRACTICE?</span>
+    <h2>People are part of the security perimeter.</h2>
+    <p>Practice spotting manipulation in realistic situations and earn progress along the way.</p>
+  </div><a class="primary-btn" href="/awareness">Back to Security Education <span>→</span></a>
+</section>
+{% endblock %}

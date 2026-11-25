@@ -1,0 +1,34 @@
+{% extends "base.html" %}{% block page_title %}Scan history{% endblock %}{% block content %}<section
+    class="welcome-row">
+    <div><span class="eyebrow">INVESTIGATION LOG</span>
+        <h1>Every scan, <span class="gradient-text">one view.</span></h1>
+        <p>Review previously analyzed URLs and their recorded risk classifications.</p>
+    </div><a class="primary-btn button-link" href="/">＋ New scan</a>
+</section>
+<section class="panel recent-panel">
+    <div class="panel-heading">
+        <div><span class="eyebrow">LOCAL DATABASE</span>
+            <h3>Stored scan records</h3>
+        </div><span class="chart-tag">LATEST 100</span>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>WEBSITE / URL</th>
+                    <th>RISK SCORE</th>
+                    <th>CLASSIFICATION</th>
+                    <th>TIME</th>
+                </tr>
+            </thead>
+            <tbody>{% for h in history %}<tr>
+                    <td><span class="url-cell">◉ &nbsp; {{ h.url }}</span></td>
+                    <td><b>{{ h.score }}<small>/100</small></b></td>
+                    <td><span class="risk-badge {{ h.level|lower }}">{{ h.level }}</span></td>
+                    <td class="muted-cell">{{ h.scanned_at }}</td>
+                </tr>{% else %}<tr>
+                    <td colspan="4" class="empty-cell">No scans recorded yet.</td>
+                </tr>{% endfor %}</tbody>
+        </table>
+    </div>
+</section>{% endblock %}

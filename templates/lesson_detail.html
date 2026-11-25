@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block page_title %}{{ lesson.title }}{% endblock %}
+{% block content %}
+<a class="lesson-back" href="/awareness">← Awareness Center</a>
+<section class="lesson-detail-hero">
+ <span class="eyebrow">LESSON {{ '%02d'|format(lesson_id) }} OF {{ lesson_count }} · GUIDED LEARNING</span>
+ <h1>{{ lesson.title }}</h1><p>{{ lesson.subtitle }}</p>
+ <div class="lesson-detail-meta"><span>◷ 5–8 min read</span><span>▤ Practical case study</span><span>✓ Knowledge check</span></div>
+</section>
+<div class="lesson-detail-layout">
+ <main class="lesson-article">
+ {% for heading,body in lesson.sections %}
+ <section class="lesson-topic"><span class="topic-index">{{ '%02d'|format(loop.index) }}</span><div><h2>{{ heading }}</h2><p>{{ body }}</p>
+ {% if lesson_id == 2 and loop.index == 2 %}
+ <div class="unicode-comparison"><div><small>LOOKALIKE A · LATIN</small><code>hell<span>o</span>.test</code><p>o = U+006F</p></div><div><small>LOOKALIKE B · CYRILLIC</small><code>hell<span class="cyrillic-o">о</span>.test</code><p>о = U+043E</p></div></div>
+ <p class="lesson-caution">The two labels are different character sequences, even when the font makes them look alike. These are reserved educational .test examples, not links.</p>
+ {% endif %}
+ </div></section>
+ {% endfor %}
+ <section class="lesson-quiz" id="lesson-check"><span class="eyebrow">KNOWLEDGE CHECK</span><h2>Check your understanding</h2><p>Answer both questions. Your lesson is marked complete only after you submit the knowledge check. Answers remain saved until you choose Take Test Again.</p>
+ {% for question,options,correct in lesson.quiz %}
+ <article class="lesson-question" data-q-index="{{ loop.index0 }}" data-correct="{{ correct }}">
+ <h3>{{ loop.index }}. {{ question }}</h3><div class="lesson-answer-options">
+ {% for option in options %}<button type="button" data-option="{{ loop.index0 }}">{{ option }}</button>{% endfor %}
+ </div><div class="lesson-answer-feedback" aria-live="polite"></div></article>
+ {% endfor %}
+ <div class="lesson-submit-row"><span id="lesson-check-progress">0 of {{ lesson.quiz|length }} answered</span><button class="primary-btn" id="submit-lesson" disabled>Submit knowledge check <span>→</span></button><button class="secondary-btn" id="retake-lesson" hidden>Take Test Again ↻</button></div>
+ <div class="lesson-finish-message" id="lesson-finish-message" aria-live="polite"></div>
+ </section>
+ </main>
+ <aside class="lesson-sidebar"><div class="lesson-sidebar-card"><span class="eyebrow">LESSON CHECKLIST</span><h3>Finish the learning path</h3><ul><li>Read the concepts</li><li>Review the case study</li><li>Answer the knowledge check</li><li>Review feedback</li></ul><div class="lesson-sidebar-note">Completion is earned through learning—not by opening the card.</div></div></aside>
+</div>
+{% endblock %}
